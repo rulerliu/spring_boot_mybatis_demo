@@ -1,9 +1,21 @@
 package com.mayikt.mybatis.entity;
 
-public class UserEntity {
+import java.io.Serializable;
+
+public class UserEntity implements Serializable {
     private Long id;
     private String name;
     private Integer age;
+
+    public UserEntity() {
+
+    }
+
+    public UserEntity(Long id, String name, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 
     public void setId(Long id) {
         this.id = id;

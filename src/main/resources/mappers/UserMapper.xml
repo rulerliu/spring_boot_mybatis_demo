@@ -16,4 +16,11 @@
             resultType="userEntity">
         select * from user where id=#{id}
     </select>
+
+    <update id="updateUser" parameterType="int">
+        update user set name = 'liuwq222' where id=#{id}
+    </update>
+
+    <!-- 配置二级缓存介质 -->
+    <cache type="com.mayikt.mybatis.cache.MybatisRedisCache" eviction="LRU" />
 </mapper>

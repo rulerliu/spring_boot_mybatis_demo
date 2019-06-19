@@ -36,9 +36,23 @@ public class TestMyBatis {
         /*UserMapper userMapper = sqlSession.getMapper(UserMapper.class);*/
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
-        UserEntity user = userMapper.getUser(1);
-        System.out.println(user.getName());
+//        UserEntity user = userMapper.getUser(1L);
+//        System.out.println(user.getName());
 
+        System.out.println(">>>第一次查询");
+        UserEntity user2 = sqlSession.selectOne("com.mayikt.mybatis.mapper.UserMapper.getUser", 1);
+        System.out.println(user2.getName());
+
+//        int result = sqlSession.update("com.mayikt.mybatis.mapper.UserMapper.updateUser", 1);
+//        System.out.println(">>>result:" + result);
+
+        // 调用close方法，二级缓存才会把数据commit到redis中
+        sqlSession.close();
+
+        System.out.println(">>>第二次查询");
+        SqlSession sqlSession2 = sqlSessionFactory.openSession();
+        UserEntity user3 = sqlSession2.selectOne("com.mayikt.mybatis.mapper.UserMapper.getUser", 1);
+        System.out.println(user3.getName());
     }
 
 }

@@ -7,6 +7,8 @@
     <settings>
         <!-- 打印查询语句 -->
         <setting name="logImpl" value="STDOUT_LOGGING" />
+        <!-- 开启二级缓存CacheExecutor，默认为true -->
+        <setting name="cacheEnabled" value="true" />
     </settings>
 
     <typeAliases>
